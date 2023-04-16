@@ -16,3 +16,13 @@ export const login = async (loginData) => {
     });
   });
 };
+
+export const getWallet = async () => {
+  return axiosInstance
+    .get("/wallet", {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+    })
+    .then(({ data }) => data);
+};
