@@ -1,0 +1,14 @@
+@import "../../../../styles/variables";
+
+.root {
+  display: flex;
+  gap: 8px;
+
+  justify-content: start;
+  align-items: center;
+  height: 36px;
+
+  &:global(.container) {
+    margin-bottom: 24px;
+  }
+}
