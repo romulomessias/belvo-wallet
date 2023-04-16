@@ -1,14 +1,18 @@
 @import "../../../../styles/variables";
 
-.root {
+.header {
   display: flex;
   gap: 8px;
 
   justify-content: start;
   align-items: center;
-  height: 36px;
+  height: 48px;
 
   &:global(.container) {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    text-transform: capitalize;
   }
 }

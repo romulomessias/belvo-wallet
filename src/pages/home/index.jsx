@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getWallet } from "../../services";
 import { CircularProgress } from "@mui/material";
 import { Wallets } from "./components/Wallets";
+import { Auth } from "../../components/Auth";
 
 export const Home = () => {
   const [walletData, setWalletData] = useState();
@@ -18,18 +19,19 @@ export const Home = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  if (!walletData) {
-    return (
-      <Container className={styles["root__loader"]}>
-        <CircularProgress />
-      </Container>
-    );
-  }
-
   return (
-    <>
-      <Header />
-      <Wallets balance={walletData.balance} />
-    </>
+    <Auth>
+      {!walletData && (
+        <Container className={styles["root__loader"]}>
+          <CircularProgress />
+        </Container>
+      )}
+      {walletData && (
+        <>
+          <Header />
+          <Wallets balance={walletData.balance} />
+        </>
+      )}
+    </Auth>
   );
 };
