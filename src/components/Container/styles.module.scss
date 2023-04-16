@@ -1,0 +1,25 @@
+.container {
+  margin: auto;
+  width: 100%;
+
+  //medium
+  @media screen and (min-width: 1201px) {
+    max-width: 1296px;
+    padding: 0 48px;
+  }
+
+  //small desktop
+  @media screen and (min-width: 901px) and (max-width: 1200px) {
+    padding: 0 48px;
+  }
+
+  //tablet
+  @media screen and (min-width: 601px) and (max-width: 900px) {
+    padding: 0 24px;
+  }
+
+  //mobile
+  @media screen and (max-width: 600px) {
+    padding: 0 16px;
+  }
+}
