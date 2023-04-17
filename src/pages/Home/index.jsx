@@ -1,5 +1,4 @@
 import styles from "./styles.module.scss";
-import { Header } from "./components/Header";
 import { Container } from "../../components/container";
 import { useContext, useEffect, useState } from "react";
 import { getContacts, getWallet } from "../../services";
@@ -7,6 +6,7 @@ import { Button, CircularProgress } from "@mui/material";
 import { Wallets } from "./components/Wallets";
 import { AuthProvider } from "../../components/Auth";
 import { Transactions } from "./components/Transactions";
+import { Header } from "./components/Header";
 import { useNavigate } from "react-router-dom";
 import { GlobalStateContext } from "../../components/GlobalStateProvider";
 
