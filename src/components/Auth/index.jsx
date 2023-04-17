@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     setIsAuthValid(isAuthValid);
 
-    if (isAuthValid && !userData) {
+    if (isAuthValid && !userData?.name) {
       const { sub } = jwt_decode(accessToken);
       updateUserData({
         ...userData,

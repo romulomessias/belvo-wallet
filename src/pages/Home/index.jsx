@@ -13,7 +13,6 @@ import { GlobalStateContext } from "../../components/GlobalStateProvider";
 const HomeBase = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-
   const {
     userData,
     balance,
@@ -23,6 +22,7 @@ const HomeBase = () => {
     updateTransactions,
     updateContacts,
   } = useContext(GlobalStateContext);
+  console.log(userData);
 
   const handleSentCryptoClick = () => {
     navigate("/send-crypto");
@@ -40,7 +40,7 @@ const HomeBase = () => {
           email: summary.email,
         });
         updateBalance(summary.balance);
-        updateTransactions(summary.transactions);
+        updateTransactions(summary.transactions.reverse());
         updateContacts(contacts);
       })
       .catch(console.error)

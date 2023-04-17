@@ -42,6 +42,7 @@ export const Login = () => {
           </Typography>
           <TextField
             label="Username"
+            name="Username"
             size="small"
             value={loginData.username}
             disabled={isLoading}
@@ -51,6 +52,7 @@ export const Login = () => {
           />
           <TextField
             label="Password"
+            name="Password"
             size="small"
             value={loginData.password}
             type="password"

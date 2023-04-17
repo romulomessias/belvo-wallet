@@ -10,8 +10,8 @@ export const Header = () => {
   return (
     <Container className={styles["header"]} as="header">
       <Avatar sx={{ width: 24, height: 24 }} />
-      <Typography className={styles["header__title"]} variant="body1">
-        Hi, {userData.name}
+      <Typography aria-label="greeting user" className={styles["header__title"]} variant="body1">
+        {`Hi, ${userData.name}`}
       </Typography>
     </Container>
   );
