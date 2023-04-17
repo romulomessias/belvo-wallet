@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home } from "./home";
-import { Login } from "./login";
+import { Home } from "./Home";
+import { Login } from "./Login";
 import { SendCrypto } from "./SendCrypto";
 
 export const router = createBrowserRouter([

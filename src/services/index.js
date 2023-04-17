@@ -38,13 +38,11 @@ export const getContacts = async () => {
 };
 
 export const sendCrypto = async (payload) => {
-  return axiosInstance
-    .post("/wallet/send", payload, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("accessToken")}`,
-      },
-    })
-    .then(({ data }) => data);
+  return axiosInstance.post("/wallet/send", payload, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${Cookies.get("accessToken")}`,
+    },
+  });
 };
