@@ -6,7 +6,7 @@ import { Chip, Typography } from "@mui/material";
 import arrowUp from "/arrow-up.svg";
 import arrowDown from "/arrow-down.svg";
 
-import { Container } from "../../../../components/container";
+import { Container } from "../../../../components/Container";
 import { GlobalStateContext } from "../../../../components/GlobalStateProvider";
 
 export const Transactions = ({ transactions = [] }) => {

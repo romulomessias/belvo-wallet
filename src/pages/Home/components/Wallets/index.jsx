@@ -1,4 +1,4 @@
-import { Container } from "../../../../components/container";
+import { Container } from "../../../../components/Container";
 import { walletTypeMap } from "../../../../constants";
 import styles from "./styles.module.scss";
 

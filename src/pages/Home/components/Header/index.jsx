@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import { Avatar, Typography } from "@mui/material";
 import { useContext } from "react";
 
-import { Container } from "../../../../components/container";
+import { Container } from "../../../../components/Container";
 import { GlobalStateContext } from "../../../../components/GlobalStateProvider";
 
 export const Header = () => {

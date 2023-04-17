@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import { Container } from "../../components/container";
+import { Container } from "../../components/Container";
 import { useContext, useEffect, useState } from "react";
 import { getContacts, getWallet } from "../../services";
 import { Button, CircularProgress } from "@mui/material";

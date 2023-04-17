@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Paper, TextField, Button, Alert, Typography } from "@mui/material";
 
-import { Container } from "../../components/container";
+import { Container } from "../../components/Container";
 import { login } from "../../services";
 
 export const Login = () => {

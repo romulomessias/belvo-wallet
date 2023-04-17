@@ -1,6 +1,6 @@
 import styles from "./style.module.scss";
 
-import { Container } from "../../components/container";
+import { Container } from "../../components/Container";
 import { AuthProvider } from "../../components/Auth";
 import { GlobalStateContext } from "../../components/GlobalStateProvider";
 import { useContext, useState } from "react";
