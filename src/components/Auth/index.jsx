@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext({
   isAuthValid: false,
   userData: null,
+  contacts: [],
+  transactions: [],
   updateUserData: () => {},
 });
 
-export const Auth = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isAuthValid, setIsAuthValid] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -22,7 +24,6 @@ export const Auth = ({ children }) => {
 
     if (isAuthValid && !userData) {
       const { sub } = jwt_decode(accessToken);
-      console.log(sub, userData);
       setUserData({
         name: sub,
       });
@@ -40,6 +41,7 @@ export const Auth = ({ children }) => {
       value={{
         isAuthValid,
         userData: userData,
+        updateUserData: setUserData,
       }}
     >
       {isAuthValid && children}

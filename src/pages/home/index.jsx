@@ -1,26 +1,31 @@
 import styles from "./styles.module.scss";
 import { Header } from "./components/Header";
 import { Container } from "../../components/container";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getWallet } from "../../services";
 import { CircularProgress } from "@mui/material";
 import { Wallets } from "./components/Wallets";
-import { Auth } from "../../components/Auth";
+import { AuthProvider, AuthContext } from "../../components/Auth";
+import { Transactions } from "./components/Transactions";
 
-export const Home = () => {
+const HomeBase = () => {
   const [walletData, setWalletData] = useState();
+  const { userData, updateUserData } = useContext(AuthContext);
 
   useEffect(() => {
     getWallet()
       .then((data) => {
-        console.log(data);
         setWalletData(data);
+        updateUserData({
+          ...userData,
+          email: data.email,
+        });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }, []);
 
   return (
-    <Auth>
+    <>
       {!walletData && (
         <Container className={styles["root__loader"]}>
           <CircularProgress />
@@ -30,8 +35,15 @@ export const Home = () => {
         <>
           <Header />
           <Wallets balance={walletData.balance} />
+          <Transactions transactions={walletData.transactions} />
         </>
       )}
-    </Auth>
+    </>
   );
 };
+
+export const Home = () => (
+  <AuthProvider>
+    <HomeBase />
+  </AuthProvider>
+);

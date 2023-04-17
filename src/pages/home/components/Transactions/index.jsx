@@ -1,0 +1,61 @@
+import styles from "./styles.module.scss";
+
+import { useContext } from "react";
+import { Chip, Typography } from "@mui/material";
+
+import arrowUp from "/arrow-up.svg";
+import arrowDown from "/arrow-down.svg";
+
+import { Container } from "../../../../components/container";
+import { AuthContext } from "../../../../components/Auth";
+
+export const Transactions = ({ transactions = [] }) => {
+  const recentTransactions = transactions.slice(0, 5);
+
+  return (
+    <Container as="section">
+      <Typography variant="h4">Transactions</Typography>
+      <ul className={styles["transactions"]}>
+        {recentTransactions.map((transaction) => (
+          <Transaction transaction={transaction} />
+        ))}
+      </ul>
+    </Container>
+  );
+};
+
+const transactionTypeMapper = {
+  sent: {
+    icon: arrowUp,
+    responsible: "receiver",
+    description: "Sent",
+  },
+  received: {
+    icon: arrowDown,
+    responsible: "sender",
+    description: "Received",
+  },
+};
+
+const Transaction = ({ transaction }) => {
+  const { userData } = useContext(AuthContext);
+
+  const transactionType =
+    userData.email === transaction.sender ? "sent" : "received";
+
+  const { icon, responsible, description } =
+    transactionTypeMapper[transactionType];
+
+  return (
+    <li className={styles["transaction"]}>
+      <img className={styles["transaction__icon"]} src={icon} />
+      <section>
+        <Typography variant="body">{transaction[responsible]}</Typography>
+        <Typography>
+          {description} {transaction.amount} {transaction.currency}
+        </Typography>
+      </section>
+      <Chip label={transaction.status} size="small" />
+    </li>
+  );
+};
