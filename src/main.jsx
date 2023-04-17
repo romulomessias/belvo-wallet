@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 
 import { router } from "./pages";
+import { GlobalStateProvider } from "./components/GlobalStateProvider";
 
 const App = () => {
   return <RouterProvider router={router} />;
@@ -12,6 +13,8 @@ const App = () => {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <GlobalStateProvider>
+      <App />
+    </GlobalStateProvider>
   </React.StrictMode>
 );

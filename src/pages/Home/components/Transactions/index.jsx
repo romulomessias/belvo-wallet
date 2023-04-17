@@ -7,17 +7,17 @@ import arrowUp from "/arrow-up.svg";
 import arrowDown from "/arrow-down.svg";
 
 import { Container } from "../../../../components/container";
-import { AuthContext } from "../../../../components/Auth";
+import { GlobalStateContext } from "../../../../components/GlobalStateProvider";
 
 export const Transactions = ({ transactions = [] }) => {
   const recentTransactions = transactions.slice(0, 5);
 
   return (
     <Container as="section">
-      <Typography variant="h4">Transactions</Typography>
+      <Typography variant="h4">Last transactions</Typography>
       <ul className={styles["transactions"]}>
-        {recentTransactions.map((transaction) => (
-          <Transaction transaction={transaction} />
+        {recentTransactions.map((transaction, index) => (
+          <Transaction key={index} transaction={transaction} />
         ))}
       </ul>
     </Container>
@@ -38,7 +38,7 @@ const transactionTypeMapper = {
 };
 
 const Transaction = ({ transaction }) => {
-  const { userData } = useContext(AuthContext);
+  const { userData } = useContext(GlobalStateContext);
 
   const transactionType =
     userData.email === transaction.sender ? "sent" : "received";

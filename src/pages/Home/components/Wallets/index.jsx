@@ -1,26 +1,10 @@
 import { Container } from "../../../../components/container";
+import { walletTypeMap } from "../../../../constants";
 import styles from "./styles.module.scss";
 
 import { Typography } from "@mui/material";
 
-import btcLogo from "/btc.svg";
-import ethLogo from "/eth.svg";
-import dogeLogo from "/doge.svg";
 
-const walletTypeMap = {
-  ETH: {
-    name: "Ethereum",
-    logo: ethLogo,
-  },
-  DOGE: {
-    name: "Dogecoin",
-    logo: dogeLogo,
-  },
-  BTC: {
-    name: "Bitcoin",
-    logo: btcLogo,
-  },
-};
 
 const Wallet = ({ type, balance = 0 }) => {
   const { name, logo } = walletTypeMap[type];

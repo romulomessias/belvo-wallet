@@ -1,8 +1,14 @@
-@import "../../../../styles/variables";
+@import "../../../../styles/variables.scss";
 
 .header {
+  position: sticky;
+  top: 0;
   display: flex;
   gap: 8px;
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: rgba($neutral-0, 0.5);
 
   justify-content: start;
   align-items: center;

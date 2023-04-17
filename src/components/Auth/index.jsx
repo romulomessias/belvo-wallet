@@ -1,20 +1,13 @@
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
-import React, { createContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-export const AuthContext = createContext({
-  isAuthValid: false,
-  userData: null,
-  contacts: [],
-  transactions: [],
-  updateUserData: () => {},
-});
+import { GlobalStateContext } from "../GlobalStateProvider";
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
+  const { userData, updateUserData } = useContext(GlobalStateContext);
   const [isAuthValid, setIsAuthValid] = useState(false);
-  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const accessToken = Cookies.get("accessToken");
@@ -24,27 +17,18 @@ export const AuthProvider = ({ children }) => {
 
     if (isAuthValid && !userData) {
       const { sub } = jwt_decode(accessToken);
-      setUserData({
+      updateUserData({
+        ...userData,
         name: sub,
       });
     }
 
     if (!isAuthValid) {
-      setUserData(null);
+      updateUserData({});
       navigate("/login");
       return;
     }
   });
 
-  return (
-    <AuthContext.Provider
-      value={{
-        isAuthValid,
-        userData: userData,
-        updateUserData: setUserData,
-      }}
-    >
-      {isAuthValid && children}
-    </AuthContext.Provider>
-  );
+  return <>{isAuthValid && children}</>;
 };

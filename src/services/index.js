@@ -26,3 +26,14 @@ export const getWallet = async () => {
     })
     .then(({ data }) => data);
 };
+
+export const getContacts = async () => {
+  return axiosInstance
+    .get("/contacts", {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+    })
+    .then(({ data }) => data);
+};
+
