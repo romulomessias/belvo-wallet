@@ -38,6 +38,7 @@ const WalletCard = ({ currency, balance = 0, onClick }) => {
   const { name, logo } = walletTypeMap[currency];
   return (
     <Button
+      data-currency={currency}
       className={styles["choose-wallet__wallet"]}
       disabled={balance === 0}
       onClick={onClick}
@@ -48,7 +49,7 @@ const WalletCard = ({ currency, balance = 0, onClick }) => {
         alt={`${name} logo`}
       />
       <section>
-        <Typography>{name}</Typography>
+        <Typography>{name} {currency}</Typography>
         <div className={styles["choose-wallet__wallet__balance"]}>
           {balance.toFixed(6)}
         </div>

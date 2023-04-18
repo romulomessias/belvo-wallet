@@ -50,6 +50,7 @@ const SendCryptoBase = () => {
           nextButton={<div />}
           backButton={
             <Button
+              variant="outlined"
               size="small"
               onClick={handlePreviousStep}
               disabled={activeStep === 0}

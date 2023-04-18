@@ -41,6 +41,7 @@ const ContactCard = ({ contact, onClick }) => {
   return (
     <li>
       <Button
+        data-contact={contact.name}
         className={styles["choose-contacts__contact"]}
         onClick={onClick}
         fullWidth

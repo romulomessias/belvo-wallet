@@ -53,7 +53,9 @@ export const Summary = ({ payload }) => {
         </DialogTitle>
 
         <DialogActions>
-          <Button onClick={handleCloseAlert}>Close</Button>
+          <Button name="Close" onClick={handleCloseAlert}>
+            Close
+          </Button>
         </DialogActions>
       </Dialog>
       <div className={styles["summary"]}>
@@ -63,24 +65,31 @@ export const Summary = ({ payload }) => {
         <Paper className={styles["summary__resume"]} variant="outlined">
           <section className={styles["summary__resume__field"]}>
             <Typography variant="caption">Receiver</Typography>
-            <Typography>{receiver && receiver.name}</Typography>
+            <Typography data-receiver>
+              {receiver && receiver.name}
+            </Typography>
             <Typography>{payload.receiver}</Typography>
           </section>
           <section className={styles["summary__resume__field"]}>
             <Typography variant="caption">Amount</Typography>
-            <Typography>
+            <Typography
+              data-amount
+            >
               {payload.amount} {payload.currency}
             </Typography>
           </section>
           {payload.description !== "" && (
             <section className={styles["summary__resume__field"]}>
               <Typography variant="caption">Description</Typography>
-              <Typography>{payload.description}</Typography>
+              <Typography data-description>
+                {payload.description}
+              </Typography>
             </section>
           )}
         </Paper>
 
         <Button
+          name="Send"
           variant="contained"
           disableElevation
           onClick={handleSendButtonCLick}

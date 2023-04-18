@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, FormHelperText, TextField, Typography } from "@mui/material";
 import { useContext } from "react";
 import { GlobalStateContext } from "../../../../components/GlobalStateProvider";
 import { walletTypeMap } from "../../../../constants";
@@ -46,24 +46,28 @@ export const ChooseAmount = ({
         onSubmit={handleFormsSubmit}
         className={styles["choose-amount__form"]}
       >
-        <TextField
-          label="Amount"
-          type="number"
-          size="small"
-          placeholder="0.001"
-          error={!isAmountValid}
-          helperText={
-            !isAmountValid ? "The value is greater than your balance" : " "
-          }
-          value={payload.amount}
-          inputProps={{
-            type: "number",
-          }}
-          onChange={handleAmountChange}
-        />
-
+        <section>
+          <TextField
+            label="Amount"
+            name="Amount"
+            id="amount"
+            type="number"
+            size="small"
+            placeholder="0.001"
+            error={!isAmountValid}
+            value={payload.amount}
+            inputProps={{
+              type: "number",
+            }}
+            onChange={handleAmountChange}
+          />
+          <FormHelperText error={true}  id="component-error-text" aria-label="amount input error massage">
+            {!isAmountValid ? "The value is greater than your balance" : " "}
+          </FormHelperText>
+        </section>
         <TextField
           label="Description"
+          name="Description"
           placeholder="Write some message"
           size="small"
           multiline

@@ -63,6 +63,7 @@ const HomeBase = () => {
           <Transactions transactions={transactions} />
           <Container as="section" className={styles["home__footer"]}>
             <Button
+              name="Send crypto"
               disableElevation
               variant="contained"
               size="large"

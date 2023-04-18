@@ -1,8 +1,12 @@
 /// <reference types="Cypress" />
 
 describe("Login", () => {
+  beforeEach(() => {
+    // cy.clearCookie("accessToken");
+  });
+
   it("successfully login", () => {
-    cy.visit("http://localhost:5174");
+    cy.visit("http://localhost:3000/login");
 
     cy.get("form").within(() => {
       cy.get('input[name="Username"]').type("vicky");
@@ -14,7 +18,7 @@ describe("Login", () => {
   });
 
   it("show login error", () => {
-    cy.visit("http://localhost:5174");
+    cy.visit("http://localhost:3000/login");
 
     cy.get("form").within(() => {
       cy.get('input[name="Username"]').type("vicky");
