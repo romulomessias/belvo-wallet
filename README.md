@@ -54,7 +54,7 @@ Choose this [lib](https://mui.com/core/) to help me with the base components lik
 
 Choose Vite to build this application because of it's fast and simple. I could have used Nextjs, but I thought I could not take advantage of SSG or SSR.
 
-## How the code is organized?
+## How is the code organized?
 
 ```sh
 project

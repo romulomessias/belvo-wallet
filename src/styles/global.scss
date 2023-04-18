@@ -33,3 +33,11 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.button {
+  // border-radius: 25px;
+  // color: red;
+  &.MuiButtonBase-root {
+    border-radius: 25px;
+  }
+}

@@ -76,6 +76,7 @@ export const ChooseAmount = ({
           onChange={handleDescriptionChange}
         />
         <Button
+          className="button"
           type="submit"
           disableElevation
           disabled={!isAmountValid || payload.amount === 0}

@@ -1,11 +1,11 @@
 import styles from "./style.module.scss";
 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, MobileStepper } from "@mui/material";
+
 import { Container } from "../../components/Container";
 import { AuthProvider } from "../../components/Auth";
-import { GlobalStateContext } from "../../components/GlobalStateProvider";
-import { useContext, useState } from "react";
-
-import { Box, Button, MobileStepper, Paper, Typography } from "@mui/material";
 import { ChooseContact } from "./components/ChooseContact";
 import { ChooseWallet } from "./components/ChooseWallet";
 import { ChooseAmount } from "./components/ChooseAmount";
@@ -14,7 +14,7 @@ import { Summary } from "./components/Summary";
 const steps = [ChooseContact, ChooseWallet, ChooseAmount, Summary];
 
 const SendCryptoBase = () => {
-  const {} = useContext(GlobalStateContext);
+  const navigate = useNavigate();
   const [sendCryptoPayload, setSendCryptoPayload] = useState({
     amount: 0,
     currency: "ETH",
@@ -29,6 +29,11 @@ const SendCryptoBase = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
   const handlePreviousStep = () => {
+    if (activeStep === 0) {
+      navigate(-1);
+      return;
+    }
+
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -50,10 +55,10 @@ const SendCryptoBase = () => {
           nextButton={<div />}
           backButton={
             <Button
+              className="button"
               variant="outlined"
               size="small"
               onClick={handlePreviousStep}
-              disabled={activeStep === 0}
             >
               Back
             </Button>

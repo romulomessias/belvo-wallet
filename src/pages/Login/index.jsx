@@ -34,7 +34,7 @@ export const Login = () => {
   };
 
   return (
-    <Container className={styles["root"]}>
+    <article className={styles["root"]}>
       <Paper variant="outlined">
         <form className={styles["root__form"]} onSubmit={handleOnSubmit}>
           <Typography variant="h6" align="center">
@@ -63,6 +63,7 @@ export const Login = () => {
           />
           {errorData && <Alert severity="error">{errorData.detail}</Alert>}
           <Button
+            className="button"
             disabled={isLoading}
             type="submit"
             variant="contained"
@@ -73,6 +74,6 @@ export const Login = () => {
           </Button>
         </form>
       </Paper>
-    </Container>
+    </article>
   );
 };
