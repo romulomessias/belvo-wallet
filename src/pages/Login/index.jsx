@@ -35,8 +35,8 @@ export const Login = () => {
 
   return (
     <article className={styles["root"]}>
-      <Paper variant="outlined">
-        <form className={styles["root__form"]} onSubmit={handleOnSubmit}>
+      <form className={styles["root__form"]} onSubmit={handleOnSubmit}>
+        <Paper variant="outlined" className={styles["root__paper"]}>
           <Typography variant="h6" align="center">
             Welcome back
           </Typography>
@@ -72,8 +72,8 @@ export const Login = () => {
             Sing in
             {isLoading && "..."}
           </Button>
-        </form>
-      </Paper>
+        </Paper>
+      </form>
     </article>
   );
 };
