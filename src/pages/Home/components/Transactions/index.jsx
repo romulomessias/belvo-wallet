@@ -15,8 +15,12 @@ import { Container } from "../../../../components/Container";
 import { GlobalStateContext } from "../../../../components/GlobalStateProvider";
 import { transactionTypeMapper } from "../../../../constants";
 import { TransactionDetail } from "../../../../components/TransactionDetail";
+import { useNavigate } from "react-router-dom";
+import { TransactionModal } from "../../../../components/TransactionDetailModal";
+import { TransactionCard } from "../../../../components/TransactionCard/indes";
 
 export const Transactions = ({ transactions = [] }) => {
+  const navigate = useNavigate();
   const recentTransactions = transactions.slice(0, 5);
   const [currentTransaction, setCurrentTransaction] = useState(null);
 
@@ -24,74 +28,37 @@ export const Transactions = ({ transactions = [] }) => {
     setCurrentTransaction(transaction);
   };
 
-  const handleCloseAlert = () => {
+  const handleCloseModal = () => {
     setCurrentTransaction(null);
+  };
+
+  const handleSeeAllButtonClick = () => {
+    navigate("/transactions");
   };
 
   return (
     <>
-      <Dialog
-        fullScreen
-        open={currentTransaction !== null}
-        onClose={handleCloseAlert}
-      >
-        <DialogTitle sx={{ pl: 0, pr: 0 }} id="alert-dialog-title">
-          <Container className={styles["transactions__modal"]}>
-            <Typography variant="h4">Transaction</Typography>
-            <Button name="Close" onClick={handleCloseAlert}>
-              Close
-            </Button>
-          </Container>
-        </DialogTitle>
-        <DialogContent sx={{ pl: 0, pr: 0 }}>
-          <Container>
-            {currentTransaction && (
-              <TransactionDetail transaction={currentTransaction} />
-            )}
-          </Container>
-        </DialogContent>
-      </Dialog>
+      <TransactionModal
+        currentTransaction={currentTransaction}
+        onClose={handleCloseModal}
+      />
       <Container as="section">
         <Typography variant="h4">Last transactions</Typography>
         <ul className={styles["transactions"]}>
           {recentTransactions.map((transaction, index) => (
-            <Transaction
+            <TransactionCard
               key={index}
               transaction={transaction}
               onClick={handleTransactionClick(transaction)}
             />
           ))}
         </ul>
+        <section className={styles["transactions__button"]}>
+          <Button fullWidth onClick={handleSeeAllButtonClick}>
+            See all
+          </Button>
+        </section>
       </Container>
     </>
-  );
-};
-
-const Transaction = ({ transaction, onClick }) => {
-  const { userData, contacts = [] } = useContext(GlobalStateContext);
-
-  const transactionType =
-    userData.email === transaction.sender ? "sent" : "received";
-
-  const { icon, responsible, description } =
-    transactionTypeMapper[transactionType];
-
-  const contact = contacts.find(
-    (contact) => contact.email === transaction[responsible]
-  );
-
-  return (
-    <li className={styles["transaction"]} onClick={onClick}>
-      <img className={styles["transaction__icon"]} src={icon} />
-      <section>
-        <Typography variant="body">
-          {contact ? contact.name : transaction[responsible]}
-        </Typography>
-        <Typography>
-          {description} {transaction.amount} {transaction.currency}
-        </Typography>
-      </section>
-      <Chip label={transaction.status} size="small" />
-    </li>
   );
 };

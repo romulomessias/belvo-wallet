@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+
+.transactions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 36px;
+
+  &__title {
+    position: sticky;
+    top: 48px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba($neutral-0, 0.75);
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__modal {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+}

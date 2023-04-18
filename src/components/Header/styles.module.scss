@@ -1,4 +1,4 @@
-@import "../../../../styles/variables.scss";
+@import "../../styles/variables.scss";
 
 .header {
   position: sticky;
@@ -8,17 +8,21 @@
 
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  background-color: rgba($neutral-0, 0.5);
+  background-color: rgba($neutral-0, 0.75);
 
   justify-content: start;
   align-items: center;
   height: 48px;
+  z-index: 1;
 
   &:global(.container) {
-    margin-bottom: 12px;
+    // margin-bottom: 12px;
   }
 
   &__title {
     text-transform: capitalize;
   }
+
+  
+  
 }
