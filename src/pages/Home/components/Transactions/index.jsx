@@ -1,7 +1,15 @@
 import styles from "./styles.module.scss";
 
 import { useContext, useState } from "react";
-import { Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
+import {
+  Button,
+  Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from "@mui/material";
 
 import { Container } from "../../../../components/Container";
 import { GlobalStateContext } from "../../../../components/GlobalStateProvider";
@@ -13,7 +21,6 @@ export const Transactions = ({ transactions = [] }) => {
   const [currentTransaction, setCurrentTransaction] = useState(null);
 
   const handleTransactionClick = (transaction) => () => {
-
     setCurrentTransaction(transaction);
   };
 
@@ -23,18 +30,26 @@ export const Transactions = ({ transactions = [] }) => {
 
   return (
     <>
-      <Dialog fullWidth open={currentTransaction !== null} onClose={handleCloseAlert}>
-        <DialogTitle id="alert-dialog-title">Transaction</DialogTitle>
+      <Dialog
+        fullScreen
+        open={currentTransaction !== null}
+        onClose={handleCloseAlert}
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Container className={styles["transactions__modal"]}>
+            <Typography variant="h4">Transaction</Typography>
+            <Button name="Close" onClick={handleCloseAlert}>
+              Close
+            </Button>
+          </Container>
+        </DialogTitle>
         <DialogContent>
-          {currentTransaction && (
-            <TransactionDetail transaction={currentTransaction} />
-          )}
+          <Container>
+            {currentTransaction && (
+              <TransactionDetail transaction={currentTransaction} />
+            )}
+          </Container>
         </DialogContent>
-        <DialogActions>
-          <Button name="Close" onClick={handleCloseAlert}>
-            Close
-          </Button>
-        </DialogActions>
       </Dialog>
       <Container as="section">
         <Typography variant="h4">Last transactions</Typography>
