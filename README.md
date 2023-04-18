@@ -16,7 +16,7 @@ Then to run the application
 yarn dev
 ```
 
-The application will be available at [http://localhost:3000/](http://localhost:3000/). If you don't want to run locally you can check the app at [https://wallet.romulomessias.dev/login](https://wallet.romulomessias.dev/login)
+The application will be available at [http://localhost:3000/](http://localhost:3000/). If you don't want to run locally you can check the app at [https://wallet.romulomessias.dev](https://wallet.romulomessias.dev)
 
 ## What about tests?
 
