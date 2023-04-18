@@ -18,7 +18,6 @@ jobs:
           node-version: 14.21.1
 
       - run: yarn install
-      - run: echo $CYPRESS_RECORD_KEY
 
       - name: Run Cypress
         uses: cypress-io/github-action@v5
