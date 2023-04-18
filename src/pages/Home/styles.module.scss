@@ -4,6 +4,9 @@
   padding-bottom: 72px;
   position: relative;
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
   &__loader {
     display: flex;
