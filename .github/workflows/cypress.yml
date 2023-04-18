@@ -4,6 +4,7 @@ on: push
 
 jobs:
   cypress-run:
+    permissions: write-all
     runs-on: ubuntu-latest
 
     name: E2E on Chrome
