@@ -35,7 +35,7 @@ export const Transactions = ({ transactions = [] }) => {
         open={currentTransaction !== null}
         onClose={handleCloseAlert}
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle sx={{ pl: 0, pr: 0 }} id="alert-dialog-title">
           <Container className={styles["transactions__modal"]}>
             <Typography variant="h4">Transaction</Typography>
             <Button name="Close" onClick={handleCloseAlert}>
@@ -43,7 +43,7 @@ export const Transactions = ({ transactions = [] }) => {
             </Button>
           </Container>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ pl: 0, pr: 0 }}>
           <Container>
             {currentTransaction && (
               <TransactionDetail transaction={currentTransaction} />
