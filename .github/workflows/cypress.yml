@@ -1,0 +1,31 @@
+name: Cypress E2E on Chrome
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    name: E2E on Chrome
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.21.1
+
+      - run: yarn install
+
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4
+        with:
+          build: yarn build
+          start: yarn dev
+          wait-on: 'http://localhost:3000/'
+          record: true
+          browser: chrome
