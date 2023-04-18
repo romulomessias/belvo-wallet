@@ -38,7 +38,7 @@ const transactionTypeMapper = {
 };
 
 const Transaction = ({ transaction }) => {
-  const { userData } = useContext(GlobalStateContext);
+  const { userData, contacts = [] } = useContext(GlobalStateContext);
 
   const transactionType =
     userData.email === transaction.sender ? "sent" : "received";
@@ -46,11 +46,17 @@ const Transaction = ({ transaction }) => {
   const { icon, responsible, description } =
     transactionTypeMapper[transactionType];
 
+  const contact = contacts.find(
+    (contact) => contact.email === transaction[responsible]
+  );
+
   return (
     <li className={styles["transaction"]}>
       <img className={styles["transaction__icon"]} src={icon} />
       <section>
-        <Typography variant="body">{transaction[responsible]}</Typography>
+        <Typography variant="body">
+          {contact ? contact.name : transaction[responsible]}
+        </Typography>
         <Typography>
           {description} {transaction.amount} {transaction.currency}
         </Typography>
