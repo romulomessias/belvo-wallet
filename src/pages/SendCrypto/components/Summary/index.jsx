@@ -17,6 +17,11 @@ import { useNavigate } from "react-router-dom";
 export const Summary = ({ payload }) => {
   const navigate = useNavigate();
   const [openAlert, setOpenAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState({
+    title: "",
+    message: "",
+    type: "",
+  });
   const [isSendingCrypto, setIsSendingCrypto] = useState(false);
   const { contacts, transactions, updateTransactions } =
     useContext(GlobalStateContext);
@@ -27,18 +32,35 @@ export const Summary = ({ payload }) => {
 
   const handleCloseAlert = () => {
     setOpenAlert(false);
-    navigate("/");
+
+    if (alertMessage.type === "success") {
+      navigate("/");
+    }
   };
 
   const handleSendButtonCLick = () => {
     setIsSendingCrypto(true);
     sendCrypto(payload)
       .then(({ data }) => {
-        setOpenAlert(true);
+        setAlertMessage({
+          title: "Transaction sent",
+          message: `Your transaction to ${receiver.name} was sent successfully`,
+          type: "success",
+        });
+
         updateTransactions([data, ...transactions]);
       })
-      .then(console.error)
-      .finally(() => setIsSendingCrypto(false));
+      .catch(() => {
+        setAlertMessage({
+          title: "Ops! Something went wrong",
+          message: "Your transaction couldn't be sent. Try again later",
+          type: "error",
+        });
+      })
+      .finally(() => {
+        setOpenAlert(true);
+        setIsSendingCrypto(false);
+      });
   };
   return (
     <>
@@ -48,10 +70,15 @@ export const Summary = ({ payload }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          Crypto sucessfully sent!
-        </DialogTitle>
-
+        <DialogTitle id="alert-dialog-title">{alertMessage.title}</DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            // style={{ padding: 16 }}
+            id="alert-dialog-description"
+          >
+            {alertMessage.message}
+          </DialogContentText>
+        </DialogContent>
         <DialogActions>
           <Button name="Close" onClick={handleCloseAlert}>
             Close
