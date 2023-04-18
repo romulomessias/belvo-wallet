@@ -37,6 +37,11 @@ export const Login = () => {
     <article className={styles["root"]}>
       <form className={styles["root__form"]} onSubmit={handleOnSubmit}>
         <Paper variant="outlined" className={styles["root__paper"]}>
+          <img
+            src="/belvo-wallet.png"
+            className={styles["root__logo"]}
+            alt="Belvo wallet logo"
+          />
           <Typography variant="h6" align="center">
             Welcome back
           </Typography>
