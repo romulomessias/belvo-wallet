@@ -1,9 +1,6 @@
 name: Cypress E2E on Chrome
 
-on:
-  pull_request:
-    branches:
-      - master
+on: push
 
 jobs:
   cypress-run:
